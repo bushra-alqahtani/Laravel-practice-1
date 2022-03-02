@@ -8,7 +8,9 @@ use App\Http\Controllers\FluentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\postsController;
-
+use App\Http\Controllers\PaginationController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\mailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +48,12 @@ Route::get('get-postid/{id}',[postsController::class,'getPostById'])->name('getp
 Route::get('remove-post/{id}',[postsController::class,'removePost'])->name('remove.post');
 Route::get('edit-post/{id}',[postsController::class,'editPost'])->name('edit.post');
 Route::post('update-post',[postsController::class,'updatePost'])->name('update.post');
+Route::get('inner',[postsController::class,'innerJoinClasses'])->name('inner.post');
+Route::get('right',[postsController::class,'rightJoinClasses'])->name('right.post');
+Route::get('left',[postsController::class,'leftJoinClasses'])->name('left.post');
+Route::get('getModel',[postsController::class,'getAllPostsModel'])->name('get.model');
+Route::get('allUsers',[PaginationController::class,'allUsers'])->name('all.users');
+Route::get('/upload',[UploadController::class,'uploadForm'])->name('upload.form');
+Route::post('/upload',[UploadController::class,'uploadFile'])->name('upload.file');
+Route::get('/testMail',[mailController::class,'sendMail']);
 

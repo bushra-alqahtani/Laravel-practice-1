@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
+
+
 
 class postsController extends Controller
 {
@@ -53,6 +56,39 @@ class postsController extends Controller
     }
 
 
+
+
+    //DB jon
+
+    public function innerJoinClasses(){
+    $request=DB::table('users')
+    ->join('posts','users.id','=','posts.user_id')
+    ->select('users.name','posts.title','posts.body')
+    ->get();
+    return $request;
+    }
+
+
+    public function rightJoinClasses(){
+        $result=DB::table('users')
+        ->rightjoin('posts','users.id','=','posts.user_id')
+        ->get();
+        return $result;
+        }
+        
+    public function leftJoinClasses(){
+        $result=DB::table('users')
+        ->leftjoin('posts','users.id','=','posts.user_id')
+        ->get();
+        return $result;
+        }
+
+    public function getAllPostsModel(){
+        $posts=Post::all();
+        
+        return $posts;
+        }
+    
 
     }
 
